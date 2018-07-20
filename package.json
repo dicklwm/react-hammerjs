@@ -1,11 +1,11 @@
 {
-  "name": "react-hammerjs",
-  "version": "1.0.1",
+  "name": "@maxhub.common/react-hammerjs",
+  "version": "1.0.0",
   "description": "ReactJS / HammerJS integration. Support touch events in your React app.",
   "main": "lib/Hammer.js",
   "jsnext:main": "dist/react-hammerjs.es.js",
   "module": "dist/react-hammerjs.es.js",
-  "author": "Jed Watson",
+  "author": "liweimin@cvte.com",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -37,12 +37,11 @@
     "react": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0"
   },
   "scripts": {
-    "build": "npm run build:clean && npm run build:lib && npm run build:dist",
+    "build": "yarn run build:clean && yarn run build:lib && yarn run build:dist",
     "build:clean": "rimraf lib dist",
     "build:lib": "babel src -d lib",
     "build:dist": "rollup --config",
-    "lint": "eslint src",
-    "test": "echo \"no tests yet\" && exit 0"
+    "lint": "eslint src"
   },
   "keywords": [
     "react",
