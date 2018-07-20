@@ -1,35 +1,115 @@
 React-HammerJS
 ==============
 
-[ReactJS](http://facebook.github.io/react/) / [HammerJS](http://hammerjs.github.io) integration. Support touch events in your React app.
+[ReactJS](http://facebook.github.io/react/) 与 [HammerJS](http://hammerjs.github.io) 的整合. 支撑你React应用的手势操作.
 
-If you're looking for native tap event handling in ReactJS, check out my [react-tappable](https://github.com/JedWatson/react-tappable) package.
+## 安装
 
+用 `React-HammerJS` 最简单的方法就是从 `npm` 或 `yarn`
 
-## Installation
+```bash
+$ npm install react-hammerjs --save
 
-The easiest way to use React-HammerJS is to install it from NPM and include it in your own React build process (using [Browserify](http://browserify.org), etc).
+or
 
-You can also use the standalone build by including `dist/hammer.js` in your page. If you use this, make sure you have already included React, and it is available as a global variable.
-
+$ yarn add react-hammerjs
 ```
-npm install react-hammerjs --save
-```
+
+## 用法
+
+Hammer组件包裹其他React组件，通过绑定事件去处理手势
+
+## 手势
+
+### Tap
+英文API：http://hammerjs.github.io/recognizer-tap/
+
+识别 `轻点` 屏幕手势
+
+| 配置项    | 默认  | 描述       |
+|-----------|----------|-------------------|
+| event     | tap      | 事件名 |
+| pointers  | 1        | 多少指触发 |
+| taps      | 1        | 点多少下触发 |
+| interval  | 300      | 在多少毫秒内算连续点击 |
+| time      | 250      | 多少毫秒后算按住 |
+| threshold | 2        | 点击过程中，多少移动值是被允许 |
+| posThreshold | 10    | 连续点击距离相隔多少有效 |
+
+### Pan
+英文API：http://hammerjs.github.io/recognizer-pan/
+
+识别在允许的方向下 `按下` 、 `移动` 的手势
+
+| 配置项    | 默认  | 描述       |
+| -----------|----------|-------------------|
+| event     | pan      | 事件名 |
+| pointers  | 1        | 多少指触发 |
+| threshold | 10       | 点击过程中，多少移动值是被允许 |
+| direction | DIRECTION_ALL | 方向 |
 
 
-## Usage
+### Pinch
+英文API：http://hammerjs.github.io/recognizer-pinch/
 
-React-HammerJS wraps a React component, binding Hammer events to it so it can fire the handlers specified.
+识别双指或多指，`捏` 或 `张` 的手势
 
-## Properties
+| 配置项    | 默认  | 描述       |
+| -----------|----------|-------------------|
+| event     | pinch    | 事件名 |
+| pointers  | 2        | 多少指触发，>= 2 |
+| threshold | 0        | 缩小放大的最小识别比率 |
 
-### Event Listener properties
+### Rotate
+英文API：http://hammerjs.github.io/recognizer-rotate/
+
+识别双指或多指， 已圆的运动轨迹， `旋转` 的手势
+
+| 配置项    | 默认  | 描述       |
+| -----------|----------|-------------------|
+| event     | pinch    | 事件名 |
+| pointers  | 2        | 多少指触发，>= 2 |
+| threshold | 0        | 旋转的最小识别比率 |
+
+### Press
+英文API： http://hammerjs.github.io/recognizer-press/
+
+识别 `按住` 不动x秒的手势
+
+| 配置项    | 默认  | 描述       |
+|-----------|----------|-------------------|
+| event     | pinch    | 事件名 |
+| pointers  | 1        | 多少指触发 |
+| threshold | 9        | 按住过程中，允许多少距离被移动 |
+| time      | 251      | 持续多少秒算按住 |
+
+### Swipe
+英文API： http://hammerjs.github.io/recognizer-swipe/
+
+识别快速 `滑动` 一定距离的手势
+
+| 配置项    | 默认  | 描述       |
+|-----------|----------|-------------------|
+| event     | swipe    | 事件名 |
+| pointers  | 1        | 多少指触发 |
+| threshold | 10       | 滑动的最小距离 |
+| direction | DIRECTION_ALL | 滑动的方向 |
+| velocity  | 0.3      | 滑动的最小速度，px 除以 ms|
+
+## 属性
+
+### props - 事件属性
 * `onTap`
 * `onDoubleTap`
 * `onPan`
 * `onPanCancel`
 * `onPanEnd`
 * `onPanStart`
+* `onPanMove`
+* `onPanLeft`
+* `onPanRight`
+* `onPanUp`
+* `onPanDown`
 * `onPinch`
 * `onPinchCancel`
 * `onPinchEnd`
@@ -44,56 +124,65 @@ React-HammerJS wraps a React component, binding Hammer events to it so it can fi
 * `onRotateMove`
 * `onRotateStart`
 * `onSwipe`
-* `action` - like the `onTap` event handler but will also be fired `onPress`.
+* `onSwipeRight`
+* `onSwipeLeft`
+* `onSwipeUp`
+* `onSwipeDown`
+* `action` - 与 `onTap` 相同，但是也会触发 `onPress`.
 
-### Behavior properties
-* `direction` - (string) `'DIRECTION_ALL'` | `'DIRECTION_HORIZONTAL'` | `'DIRECTION_VERTICAL'`.  Used to restrict the `pan` and `swipe` direction. These string values may also work: `'DIRECTION_NONE'` |`'DIRECTION_LEFT'` | `'DIRECTION_RIGHT'` | `'DIRECTION_UP'` | `'DIRECTION_DOWN'`.
+### props - 表现属性
+* `direction` - (string) `'DIRECTION_ALL'` | `'DIRECTION_HORIZONTAL'` | `'DIRECTION_VERTICAL'`.  用于限制 `pan` 和 `swipe` 的方向。 这里的值也可以是： `'DIRECTION_NONE'` |`'DIRECTION_LEFT'` | `'DIRECTION_RIGHT'` | `'DIRECTION_UP'` | `'DIRECTION_DOWN'`.
 
-* `options` - can be used to configure the Hammer manager. These properties will be merged with the default ones.
+* `options` - 可以配置 `Hammer` 的 `manager`。这些属性将于默认属性合并
 
-### Example
+### 例子
 
-```
-var Hammer = require('react-hammerjs');
+```jsx
+import Hammer from 'react-hammerjs';
 
-// Default options
+// 默认配置
 <Hammer onTap={handleTap} onSwipe={handleSwipe}><div>Tap Me</div></Hammer>
 
-// Custom options
-var options = {
-    touchAction:'compute',
-    recognizers: {
-        tap: {
-            time: 600,
-            threshold: 100
-        }
+// 自定义配置
+const options = {
+  touchAction:'compute',
+  recognizers: {
+    tap: {
+        time: 600,
+        threshold: 100
     }
+  }
 };
 
 <Hammer onTap={handleTap} options={options}><div>Tap Me</div></Hammer>
 ```
 
-# Disabled Events
+# 禁用的事件
 
-As a default, the `pinch` and `rotate` events are disabled in hammer.js, as they would make actions on an element "blocking". You may enable these events using the options object which is a attribute on the react `<Hammer>` element.
+通常情况下，`pinch` 和 `rotate`事件在 `hammer.js` 里面是被禁止的，因为他们会影响元素的 `touch-action`。你可以用配置的方式去开启这些事件
 
-For example, to activate the `pinch` event on a `canvas` element:
+比如，在 `canvas` 元素里面启用 `pinch` 事件：
 
-```
+```jsx
+import Hammer from 'react-hammerjs';
+
 <Hammer
-    onPinch={handlePinch}
-    options={{
-       recognizers: {
-          pinch: { enable: true }
-       }
-    }}>
-    <canvas></canvas>
+  onPinch={handlePinch}
+  options={{
+      recognizers: {
+        pinch: { enable: true }
+      }
+  }}>
+  <canvas></canvas>
 </Hammer>
 ```
-
-Disabled events are detailed in the hammer.js api documentation:
+详细的禁用事件可以查看以下API文档：
 - http://hammerjs.github.io/recognizer-rotate/
 - http://hammerjs.github.io/recognizer-pinch/
+
+# Fork By
+https://github.com/JedWatson/react-hammerjs
+
 
 # License
 
