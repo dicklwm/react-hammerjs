@@ -17,19 +17,19 @@ $ yarn add react-hammerjs
 
 ## 用法
 
-Hammer组件包裹其他React组件，通过绑定事件去处理手势
+Hammer组件包裹其他React组件，通过绑定事件去处理手势
 
 ## 手势
 
 ### Tap
 英文API：http://hammerjs.github.io/recognizer-tap/
 
-识别 `轻点` 屏幕手势
+识别 `轻点` 屏幕手势
 
 | 配置项    | 默认  | 描述       |
 |-----------|----------|-------------------|
 | event     | tap      | 事件名 |
-| pointers  | 1        | 多少指触发 |
+| pointers  | 1        | 多少指触发 |
 | taps      | 1        | 点多少下触发 |
 | interval  | 300      | 在多少毫秒内算连续点击 |
 | time      | 250      | 多少毫秒后算按住 |
@@ -44,7 +44,7 @@ $ yarn add react-hammerjs
 | 配置项    | 默认  | 描述       |
 | -----------|----------|-------------------|
 | event     | pan      | 事件名 |
-| pointers  | 1        | 多少指触发 |
+| pointers  | 1        | 多少指触发 |
 | threshold | 10       | 点击过程中，多少移动值是被允许 |
 | direction | DIRECTION_ALL | 方向 |
 
@@ -57,7 +57,7 @@ $ yarn add react-hammerjs
 | 配置项    | 默认  | 描述       |
 | -----------|----------|-------------------|
 | event     | pinch    | 事件名 |
-| pointers  | 2        | 多少指触发，>= 2 |
+| pointers  | 2        | 多少指触发，>= 2 |
 | threshold | 0        | 缩小放大的最小识别比率 |
 
 ### Rotate
@@ -68,7 +68,7 @@ $ yarn add react-hammerjs
 | 配置项    | 默认  | 描述       |
 | -----------|----------|-------------------|
 | event     | pinch    | 事件名 |
-| pointers  | 2        | 多少指触发，>= 2 |
+| pointers  | 2        | 多少指触发，>= 2 |
 | threshold | 0        | 旋转的最小识别比率 |
 
 ### Press
@@ -79,7 +79,7 @@ $ yarn add react-hammerjs
 | 配置项    | 默认  | 描述       |
 |-----------|----------|-------------------|
 | event     | pinch    | 事件名 |
-| pointers  | 1        | 多少指触发 |
+| pointers  | 1        | 多少指触发 |
 | threshold | 9        | 按住过程中，允许多少距离被移动 |
 | time      | 251      | 持续多少秒算按住 |
 
@@ -94,7 +94,7 @@ $ yarn add react-hammerjs
 | pointers  | 1        | 多少指触发 |
 | threshold | 10       | 滑动的最小距离 |
 | direction | DIRECTION_ALL | 滑动的方向 |
-| velocity  | 0.3      | 滑动的最小速度，px 除以 ms|
+| velocity  | 0.3      | 滑动的最小速度，px 除以 ms|
 
 ## 属性
 
@@ -130,7 +130,7 @@ $ yarn add react-hammerjs
 * `onSwipeDown`
 * `action` - 与 `onTap` 相同，但是也会触发 `onPress`.
 
-### props - 表现属性
+### props - 表现属性
 * `direction` - (string) `'DIRECTION_ALL'` | `'DIRECTION_HORIZONTAL'` | `'DIRECTION_VERTICAL'`.  用于限制 `pan` 和 `swipe` 的方向。 这里的值也可以是： `'DIRECTION_NONE'` |`'DIRECTION_LEFT'` | `'DIRECTION_RIGHT'` | `'DIRECTION_UP'` | `'DIRECTION_DOWN'`.
 
 * `options` - 可以配置 `Hammer` 的 `manager`。这些属性将于默认属性合并
