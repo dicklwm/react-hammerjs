@@ -11,7 +11,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // require('hammerjs') when in a browser. This is safe because Hammer is only
 // invoked in componentDidMount, which is not executed on the server.
-var Hammer = typeof window !== 'undefined' ? require('hammerjs') : undefined;
+var Hammer = typeof window !== 'undefined' && typeof document !== 'undefined' ? require('hammerjs') : undefined;
 
 var privateProps = {
 	children: true,
@@ -33,6 +33,11 @@ var handlerToEvent = {
 	onPanCancel: 'pancancel',
 	onPanEnd: 'panend',
 	onPanStart: 'panstart',
+	onPanMove: 'panmove',
+	onPanLeft: 'panleft',
+	onPanRight: 'panright',
+	onPanUp: 'panup',
+	onPanDown: 'pandown',
 	onPinch: 'pinch',
 	onPinchCancel: 'pinchcancel',
 	onPinchEnd: 'pinchend',
